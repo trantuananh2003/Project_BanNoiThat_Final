@@ -1,0 +1,25 @@
+services:
+  bannoithat-user:
+    build:
+      context: ./BanNoiThat_user
+    container_name: bannoithat-user
+    environment:
+      - BACKEND_API_PORT=
+    ports:
+      - "3005:80" #fix 80 : 80
+
+  bannoithat-admin:
+    build:
+      context: ./BanNoiThat_admin
+    container_name: bannoithat-admin
+    ports:
+      - "3006:3006"
+
+  bannoithat-user-3dmodel:
+    build:
+      context: ./OwnWeb_1    
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./OwnWeb_1/build:/usr/share/nginx/html
+      - ./OwnWeb_1/.nginx/nginx.conf:/etc/nginx/conf.d/default.conf
