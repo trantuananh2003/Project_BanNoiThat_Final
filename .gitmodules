@@ -1,3 +1,6 @@
 [submodule "OwnWeb_AR"]
 	path = OwnWeb_AR
 	url = https://github.com/trantuananh2003/3DProjectModelFurniture.git
+[submodule "BanNoiThat_admin"]
+	path = BanNoiThat_admin
+	url = https://github.com/trantuananh2003/BanNoiThat_admin.git
