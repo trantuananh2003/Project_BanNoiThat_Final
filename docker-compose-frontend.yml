@@ -1,25 +1,39 @@
+version: '3.8'
+
 services:
-  bannoithat-user:
-    build:
-      context: ./BanNoiThat_user
-    container_name: bannoithat-user
-    environment:
-      - BACKEND_API_PORT=
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
     ports:
-      - "3005:80"
-
-  bannoithat-admin:
-    build:
-      context: ./BanNoiThat_admin
-    container_name: bannoithat-admin
-    ports:
-      - "3006:3006"
-
-  bannoithat-user-3dmodel:
-    build:
-      context: ./OwnWeb_1    
-    ports:
-      - "3004:3004"
+      - "80:80"
+      - "443:443"
     volumes:
-      - ./OwnWeb_1/build:/usr/share/nginx/html
-      - ./OwnWeb_1/.nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl # Thư mục chứa chứng chỉ SSL
+      - ./nginx/conf.d:/etc/nginx/conf.d # Các file cấu hình bổ sung
+    restart: always
+    networks:
+      - my_network
+
+  bannoithat-user:
+    image: tuananh21225/bannoithat-user
+    container_name: bannoithat-user
+    restart: always
+    environment:
+      - PORT=3005
+      - REACT_APP_BACKEND=https://160.191.50.203:7000/api
+      - REACT_APP_MODEL3D=https://ar.noithatvn.click
+      - REACT_APP_GOOGLE_CLIENT_ID=129815532000-k7a2asaa7a72sfk017dccush9u72sj5v.apps.googleusercontent.com
+    networks:
+      - my_network
+
+  ownweb-ar:
+    image: tuananh21225/bannoithat-ar
+    container_name: ownweb-ar
+    restart: always
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
