@@ -81,8 +81,8 @@ project-root/
 │
 ├── frontend-admin/        # Source code frontend giao diện admin (ReactJS)
 │
-├── docker-compose-frontend.yml
-├── docker-compose-backend.yml
+├── ...
+├── ...
 └── README.md
 ```
 
