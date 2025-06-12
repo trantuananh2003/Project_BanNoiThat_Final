@@ -4,3 +4,6 @@
 [submodule "BanNoiThat_admin"]
 	path = BanNoiThat_admin
 	url = https://github.com/trantuananh2003/BanNoiThat_admin.git
+[submodule "BanNoiThat_user"]
+	path = BanNoiThat_user
+	url = https://github.com/PhatNT2108/BanNoiThat_user.git
