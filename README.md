@@ -90,28 +90,9 @@ project-root/
 
 ## 4. Thông tin liên hệ
 
-* **Nhóm phát triển**: \[Tên nhóm hoặc cá nhân thực hiện]
-* **Email**: \[Email liên hệ nếu có]
-* **Ngày cập nhật**: 2025-06-12
-
-## Installation
-
-Install my-project with npm
-
-```bash
-npm install my-project
-cd my-project
-```
-
-## Usage/Examples
-
-```javascript
-import Component from 'my-project'
-
-function App() {
-  return <Component />
-}
-```
+* **Nhóm phát triển**: \Nhóm Nguyễn Tấn Phát(21110911) - Trần Tuấn Anh(21110369) KLTN Khóa K21 CNPM SPKT
+* **Email**: 21110911@student.hcmute.edu.vn || 21110369@student.hcmute.edu.vn
+* **Ngày cập nhật**: 12-06-2025
 
 ## License
 
