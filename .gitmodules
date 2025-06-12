@@ -7,3 +7,6 @@
 [submodule "BanNoiThat_user"]
 	path = BanNoiThat_user
 	url = https://github.com/PhatNT2108/BanNoiThat_user.git
+[submodule "BanNoiThat_WebServer"]
+	path = BanNoiThat_WebServer
+	url = https://github.com/trantuananh2003/BanNoiThat_WebServer.git
