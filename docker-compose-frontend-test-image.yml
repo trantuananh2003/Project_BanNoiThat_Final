@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/ssl:/etc/nginx/ssl # Thư mục chứa chứng chỉ SSL
+      - ./nginx/conf.d:/etc/nginx/conf.d # Các file cấu hình bổ sung
+    restart: always
+    networks:
+      - my_network
+
+  bannoithat-user:
+    image: tuananh21225/bannoithat-user
+    container_name: bannoithat-user
+    restart: always
+    environment:
+      - PORT=3005
+      - REACT_APP_BACKEND=https://160.191.50.203:7000/api
+      - REACT_APP_MODEL3D=https://ar.noithatvn.click
+      - REACT_APP_GOOGLE_CLIENT_ID=129815532000-k7a2asaa7a72sfk017dccush9u72sj5v.apps.googleusercontent.com
+    networks:
+      - my_network
+
+  ownweb-ar:
+    image: tuananh21225/bannoithat-ar
+    container_name: ownweb-ar
+    restart: always
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

@@ -6,7 +6,7 @@ services:
     environment:
       - BACKEND_API_PORT=
     ports:
-      - "3005:80" #fix 80 : 80
+      - "3005:80"
 
   bannoithat-admin:
     build:
