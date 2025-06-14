@@ -19,11 +19,6 @@ services:
     image: tuananh21225/bannoithat-user
     container_name: bannoithat-user
     restart: always
-    environment:
-      - PORT=3005
-      - REACT_APP_BACKEND=https://160.191.50.203:7000/api
-      - REACT_APP_MODEL3D=https://ar.noithatvn.click
-      - REACT_APP_GOOGLE_CLIENT_ID=129815532000-k7a2asaa7a72sfk017dccush9u72sj5v.apps.googleusercontent.com
     networks:
       - my_network
 
@@ -31,6 +26,17 @@ services:
     image: tuananh21225/bannoithat-ar
     container_name: ownweb-ar
     restart: always
+    networks:
+      - my_network
+
+  bannoithat-api:
+    image: tuananh21225/bannoithat-api
+    container_name: bannoithat-api
+    ports:
+      - 7000:7000
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:7000
     networks:
       - my_network
 

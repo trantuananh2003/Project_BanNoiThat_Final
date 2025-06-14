@@ -1,27 +1,13 @@
 services:
-  sqlserver:
-    container_name: sqlserver
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      MSSQL_SA_PASSWORD: "1236fG543$"
-      ACCEPT_EULA: "Y"
-    ports:
-      - "1434:1433"
-    volumes:
-      - ./BackUpFile:/var/opt/mssql/data
-    restart: always
-
   bannoithat-api:
-    container_name: bannoithat-api
-    build:
-      context: ./BanNoiThat
-      dockerfile: ./Dockerfile
+    image: tuananh21225/bannoithat-api
+    ports:
+      - 7000:7000
+      - 8000:8000
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:DefaultSQLConnection=Server=sqlserver;Database=BanNoiThat;User Id=sa;Password=1236fG543$;TrustServerCertificate=true"
-    ports:
-      - "7000:80"
-    depends_on:
-      - sqlserver
-    restart: always
+      - ASPNETCORE_URLS=https://+:7000;http://+:8000
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=bannoithat
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
